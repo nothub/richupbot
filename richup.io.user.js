@@ -9,6 +9,8 @@
 // @grant        none
 // ==/UserScript==
 
+var autoEnd = false
+
 var button_roll_dice
 var button_roll_again
 var button_end_turn
@@ -72,15 +74,18 @@ function clickElement(element) {
             console.log("button_buy_for_$")
             clickElement(button_buy_for_$)
         }
+
         if (button_roll_dice != null) {
             console.log("button_roll_dice")
             clickElement(button_roll_dice)
         }
+
         if (button_roll_again != null) {
             console.log("button_roll_again")
             clickElement(button_roll_again)
         }
-        if (button_end_turn != null) {
+
+        if (autoEnd && button_end_turn != null) {
             console.log("button_end_turn")
             clickElement(button_end_turn)
         }
