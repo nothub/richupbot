@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         richup.io
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/nothub/richupbot
 // @version      0.1
 // @description  Try to take over the world!
 // @author       hub
