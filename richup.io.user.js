@@ -9,8 +9,6 @@
 // @grant        none
 // ==/UserScript==
 
-var autoEnd = false
-
 var button_roll_dice
 var button_roll_again
 var button_end_turn
@@ -64,10 +62,27 @@ function clickElement(element) {
 (function () {
     'use strict'
     const app = document.getElementById("app");
+    const config = document.createElement("segment")
+    app.prepend(config)
+
+    const newToggle = function (name) {
+        let label = document.createElement("p");
+        label.innerText = name
+        app.prepend(label)
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox"
+        label.append(checkbox)
+
+        return checkbox
+    }
+
+    const endTurn = newToggle("end-turn")
+    const active = newToggle("active")
 
     setInterval(function () {
+        if (!active) return
 
-        clearButtons()
         findButtons(app)
 
         if (button_buy_for_$ != null) {
@@ -85,10 +100,12 @@ function clickElement(element) {
             clickElement(button_roll_again)
         }
 
-        if (autoEnd && button_end_turn != null) {
+        if (endTurn.checked && button_end_turn != null) {
             console.log("button_end_turn")
             clickElement(button_end_turn)
         }
+
+        clearButtons()
 
     }, 1000);
 })();
