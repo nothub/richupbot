@@ -13,12 +13,14 @@ var button_roll_dice
 var button_roll_again
 var button_end_turn
 var button_buy_for_$
+var button_trade_decline
 
 function clearButtons() {
     button_roll_dice = null
     button_roll_again = null
     button_end_turn = null
     button_buy_for_$ = null
+    button_trade_decline = null
 }
 
 function findButtons(node) {
@@ -39,6 +41,10 @@ function findButtons(node) {
         }
         case "Buy for $": {
             button_buy_for_$ = findButtonParent(node)
+            break
+        }
+        case "Decline": {
+            button_trade_decline = findButtonParent(node)
             break
         }
     }
@@ -78,24 +84,32 @@ function clickElement(element) {
     }
 
     const endTurn = newToggle("end-turn")
+    const tradeDecline = newToggle("trade-decline")
+    const buyStreets = newToggle("buy-streets")
+    const autoroll = newToggle("autoroll")
     const active = newToggle("active")
 
     setInterval(function () {
-        if (!active) return
+        if (!active.checked) return
 
         findButtons(app)
 
-        if (button_buy_for_$ != null) {
+        if (tradeDecline.checked && button_trade_decline != null) {
+            console.log("button_trade_decline")
+            clickElement(button_trade_decline)
+        }
+
+        if (buyStreets.checked && button_buy_for_$ != null) {
             console.log("button_buy_for_$")
             clickElement(button_buy_for_$)
         }
 
-        if (button_roll_dice != null) {
+        if (autoroll.checked && button_roll_dice != null) {
             console.log("button_roll_dice")
             clickElement(button_roll_dice)
         }
 
-        if (button_roll_again != null) {
+        if (autoroll.checked && button_roll_again != null) {
             console.log("button_roll_again")
             clickElement(button_roll_again)
         }
