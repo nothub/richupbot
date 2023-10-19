@@ -95,7 +95,7 @@ function clickElement(element) {
     setInterval(function () {
         if (!active.checked) return
 
-        findButtons(app)
+        findButtons(document.documentElement)
 
         if (tradeDecline.checked && button_trade_decline != null) {
             console.log("button_trade_decline")
