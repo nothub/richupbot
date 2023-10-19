@@ -69,12 +69,15 @@ function clickElement(element) {
     'use strict'
     const app = document.getElementById("app");
     const config = document.createElement("segment")
+    config.style.display = "flex"
+    config.style.flexWrap = "wrap"
+    config.style.justifyContent = "space-evenly"
     app.prepend(config)
 
     const newToggle = function (name) {
         let label = document.createElement("p");
         label.innerText = name
-        app.prepend(label)
+        config.append(label)
 
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox"
@@ -83,11 +86,11 @@ function clickElement(element) {
         return checkbox
     }
 
-    const endTurn = newToggle("end-turn")
-    const tradeDecline = newToggle("trade-decline")
-    const buyStreets = newToggle("buy-streets")
-    const autoroll = newToggle("autoroll")
     const active = newToggle("active")
+    const autoroll = newToggle("autoroll")
+    const buyStreets = newToggle("buy-streets")
+    const tradeDecline = newToggle("trade-decline")
+    const endTurn = newToggle("end-turn")
 
     setInterval(function () {
         if (!active.checked) return
